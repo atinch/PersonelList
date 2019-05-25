@@ -1,26 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const people = [
+  {
+    img: 11,
+    name: 'atinc',
+    job: 'developer'
+  },
+  {
+    img: 21,
+    name: 'mustafa',
+    job: 'designer'
+  },
+  {
+    img: 71,
+    name: 'fatih',
+    job: 'tester'
+  }
+]
+
+const App = () => (<PersonelList />)
+
+const PersonelList = () => {
+  return(
+    <section>
+      {people.map((person)=> 
+        <Personel person={person}/>
+      )}
+    </section>
+  )
+}
+
+const Personel = (props) => {
+  const {img, name, job} = props.person
+  const {children} = props
+  const url = `https://randomuser.me/api/portraits/thumb/men/${img}.jpg`
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={'person'}>
+      <img src={url} />
+      <h4>{name}</h4>
+      <h4>{job}</h4>
+      {children}
     </div>
-  );
+  )
 }
 
 export default App;
